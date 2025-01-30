@@ -1,5 +1,6 @@
 """
 Main node implementation for Animagine Prompt
+Provides prompt structuring and enhancement functionality following Animagine model guidelines
 """
 
 import os
@@ -14,14 +15,14 @@ class AnimaginePromptNode:
     A ComfyUI node that helps structure prompts according to specific guidelines
     """
     
-    # Definición de tags predefinidas
+    # Predefined tag sets
     QUALITY_TAGS_GOOD = ["masterpiece", "best quality"]
     QUALITY_TAGS_BAD = ["low quality", "worst quality"]
     SCORE_TAGS_GOOD = ["high score", "great score", "good score"]
     SCORE_TAGS_BAD = ["average score", "bad score", "low score"]
     RATING_TAGS = ["safe", "sensitive", "nsfw", "explicit"]
     
-    # Tags negativas por defecto según las guidelines
+    # Default negative tags according to guidelines
     DEFAULT_NEGATIVE_TAGS = [
         "low quality", "worst quality", "blurry", "bad anatomy",
         "bad hands", "text", "error", "missing fingers",
@@ -38,10 +39,10 @@ class AnimaginePromptNode:
             state_manager.reset_state()
             self.current_state = state_manager.get_state()
         logger.logger.info("AnimaginePromptNode initialized with saved state")
-        
+
     @classmethod
     def INPUT_TYPES(cls) -> Dict[str, Dict[str, Any]]:
-        # Get defaults from state manager or use class defaults
+        """Define input parameters and their types"""
         state = state_manager.get_state()
         return {
             "required": {
@@ -67,17 +68,6 @@ class AnimaginePromptNode:
                 "csv_index": ("INT", {"default": state.get("csv_index", 0), "min": 0, "max": 9999})
             }
         }
-
-    def _get_csv_entry(self, csv_path: str, index: int) -> Optional[str]:
-        """Obtiene y formatea una entrada del CSV"""
-        start_time = time.time()
-        
-        if self.last_csv_path != csv_path:
-            logger.logger.info(f"Loading new CSV file: {csv_path}")
-            df = self.csv_handler.load_csv(csv_path)
-            if df is not None:
-                state_manager.add_csv_to_history(csv_path, len(df))
-            self.last_csv_path = csv_path
     
     RETURN_TYPES = ("STRING", "STRING")
     RETURN_NAMES = ("final_positive_prompt", "final_negative_prompt")
@@ -85,7 +75,7 @@ class AnimaginePromptNode:
     CATEGORY = "prompt"
 
     def _build_good_tags(self, quality_good: str, score_good: str) -> str:
-        """Construye la sección de tags positivas"""
+        """Build the positive tags section"""
         tags = []
         if quality_good:
             tags.append(quality_good)
@@ -97,7 +87,7 @@ class AnimaginePromptNode:
         return result
 
     def _build_bad_tags(self, quality_bad: str, score_bad: str) -> str:
-        """Construye la sección de tags negativas"""
+        """Build the negative tags section"""
         tags = []
         if quality_bad:
             tags.append(quality_bad)
@@ -109,12 +99,14 @@ class AnimaginePromptNode:
         return result
 
     def _get_csv_entry(self, csv_path: str, index: int) -> Optional[str]:
-        """Obtiene y formatea una entrada del CSV"""
+        """Get and format an entry from the CSV file"""
         start_time = time.time()
         
         if self.last_csv_path != csv_path:
             logger.logger.info(f"Loading new CSV file: {csv_path}")
-            self.csv_handler.load_csv(csv_path)
+            df = self.csv_handler.load_csv(csv_path)
+            if df is not None:
+                state_manager.add_csv_to_history(csv_path, len(df))
             self.last_csv_path = csv_path
             
         entry = self.csv_handler.get_entry(index)
@@ -153,7 +145,27 @@ class AnimaginePromptNode:
         csv_index: int
     ) -> Tuple[str, str]:
         """
-        Genera los prompts finales basados en los parámetros proporcionados
+        Generate final prompts based on provided parameters
+        
+        Args:
+            positive_prompt (str): Base positive prompt
+            negative_prompt (str): Base negative prompt
+            use_good_tags (bool): Whether to include good tags
+            quality_good (str): Selected quality tag from good tags
+            score_good (str): Selected score tag from good tags
+            use_bad_tags (bool): Whether to include bad tags
+            quality_bad (str): Selected quality tag from bad tags
+            score_bad (str): Selected score tag from bad tags
+            use_year (bool): Whether to include year tag
+            year (int): Year to include in prompt
+            use_rating (bool): Whether to include rating tag
+            rating (str): Selected rating tag
+            use_csv (bool): Whether to include CSV entry
+            csv_path (str): Path to CSV file
+            csv_index (int): Index of CSV entry to use
+            
+        Returns:
+            Tuple[str, str]: Final positive and negative prompts
         """
         start_time = time.time()
         
@@ -171,59 +183,72 @@ class AnimaginePromptNode:
                 "csv_index": csv_index
             })
             
-            # Lista para construir el prompt positivo
+            # Log initial state
+            logger.log_prompt_generation(
+                positive_prompt,
+                negative_prompt,
+                {
+                    "use_good_tags": use_good_tags,
+                    "use_bad_tags": use_bad_tags,
+                    "use_year": use_year,
+                    "use_rating": use_rating,
+                    "use_csv": use_csv
+                }
+            )
+            
+            # Build positive prompt parts
             positive_parts = []
             
-            # Agregar tags positivas si están activadas
+            # Add good tags if enabled
             if use_good_tags:
                 good_tags = self._build_good_tags(quality_good, score_good)
                 if good_tags:
                     positive_parts.append(good_tags)
                     logger.logger.debug(f"Added good tags: {good_tags}")
             
-            # Agregar bad tags al prompt positivo si están activadas
+            # Add bad tags to positive prompt if enabled
             if use_bad_tags:
                 bad_tags = self._build_bad_tags(quality_bad, score_bad)
                 if bad_tags:
                     positive_parts.append(bad_tags)
                     logger.logger.debug(f"Added bad tags: {bad_tags}")
             
-            # Agregar entrada del CSV si está activado
+            # Add CSV entry if enabled
             if use_csv and csv_path:
                 csv_entry = self._get_csv_entry(csv_path, csv_index)
                 if csv_entry:
                     positive_parts.append(csv_entry)
                     logger.logger.debug(f"Added CSV entry: {csv_entry}")
 
-            # Agregar el prompt base del usuario
+            # Add base positive prompt
             if positive_prompt:
                 positive_parts.append(positive_prompt)
                 logger.logger.debug(f"Added base positive prompt: {positive_prompt}")
             
-            # Agregar year tag si está activado
+            # Add year tag if enabled
             if use_year:
                 year_tag = f"year {year}"
                 positive_parts.append(year_tag)
                 logger.logger.debug(f"Added year tag: {year_tag}")
             
-            # Agregar rating si está activado
+            # Add rating if enabled
             if use_rating:
                 positive_parts.append(rating)
                 logger.logger.debug(f"Added rating: {rating}")
             
-            # Construir el prompt negativo
+            # Build negative prompt parts
             negative_parts = []
             
-            # Agregar tags negativas por defecto
+            # Add default negative tags
             negative_parts.extend(self.DEFAULT_NEGATIVE_TAGS)
             logger.logger.debug("Added default negative tags")
             
-            # Agregar el prompt negativo del usuario
+            # Add user negative prompt
             if negative_prompt:
                 negative_parts.append(negative_prompt)
                 logger.logger.debug(f"Added user negative prompt: {negative_prompt}")
             
-            # Unir todas las partes
+            # Join all parts
             final_positive = ", ".join(part for part in positive_parts if part)
             final_negative = ", ".join(part for part in negative_parts if part)
             
