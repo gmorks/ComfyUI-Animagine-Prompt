@@ -1,0 +1,8 @@
+2025-01-30 08:55:54,686 - AnimaginePrompt - DEBUG - === CSV Operation: Validation ===
+2025-01-30 08:55:54,687 - AnimaginePrompt - DEBUG - File: C:\Users\Alex\Desktop\anime_prompt\ComfyUI\custom_nodes\ComfyUI-Animagine-prompt\example_csv\example.csv
+2025-01-30 08:55:54,687 - AnimaginePrompt - DEBUG - Details: {'columns_found': ['GENDER', 'CHARACTER', 'COPYRIGHT']}
+2025-01-30 08:55:54,688 - AnimaginePrompt - DEBUG - === Performance: CSV Load ===
+2025-01-30 08:55:54,689 - AnimaginePrompt - DEBUG - Duration: 0.0150 seconds
+2025-01-30 08:55:54,689 - AnimaginePrompt - DEBUG - Details: {'filepath': 'C:\\Users\\Alex\\Desktop\\anime_prompt\\ComfyUI\\custom_nodes\\ComfyUI-Animagine-prompt\\example_csv\\example.csv', 'rows': 23, 'cached': True}
+2025-01-30 08:55:54,689 - AnimaginePrompt - DEBUG - === CSV Operation: Get Entry ===
+2025-01-30 08:55:54,690 - AnimaginePrompt - DEBUG - Details: {'index': 4, 'entry': {'gender': '1girl', 'character': 'mokota mememe', 'copyright': '.live'}}

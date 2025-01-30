@@ -3,11 +3,10 @@ Main node implementation for Animagine Prompt
 """
 
 import os
+import time
 from typing import Tuple, Dict, Any, List, Optional
-import logging
 from .csv_handler import CSVHandler
-
-logger = logging.getLogger('AnimaginePrompt')
+from .logger import logger
 
 class AnimaginePromptNode:
     """
@@ -32,6 +31,7 @@ class AnimaginePromptNode:
     def __init__(self):
         self.csv_handler = CSVHandler()
         self.last_csv_path = None
+        logger.logger.info("AnimaginePromptNode initialized")
         
     @classmethod
     def INPUT_TYPES(cls) -> Dict[str, Dict[str, Any]]:
@@ -72,7 +72,10 @@ class AnimaginePromptNode:
             tags.append(quality_good)
         if score_good:
             tags.append(score_good)
-        return ", ".join(tags)
+            
+        result = ", ".join(tags)
+        logger.logger.debug(f"Built good tags: {result}")
+        return result
 
     def _build_bad_tags(self, quality_bad: str, score_bad: str) -> str:
         """Construye la sección de tags negativas"""
@@ -81,17 +84,35 @@ class AnimaginePromptNode:
             tags.append(quality_bad)
         if score_bad:
             tags.append(score_bad)
-        return ", ".join(tags)
+            
+        result = ", ".join(tags)
+        logger.logger.debug(f"Built bad tags: {result}")
+        return result
 
     def _get_csv_entry(self, csv_path: str, index: int) -> Optional[str]:
         """Obtiene y formatea una entrada del CSV"""
+        start_time = time.time()
+        
         if self.last_csv_path != csv_path:
+            logger.logger.info(f"Loading new CSV file: {csv_path}")
             self.csv_handler.load_csv(csv_path)
             self.last_csv_path = csv_path
             
         entry = self.csv_handler.get_entry(index)
+        
+        end_time = time.time()
+        logger.log_performance(
+            "CSV Entry Retrieval",
+            start_time,
+            end_time,
+            {"path": csv_path, "index": index}
+        )
+        
         if entry:
-            return f"{entry['gender']}, {entry['character']}, {entry['copyright']}"
+            formatted_entry = f"{entry['gender']}, {entry['character']}, {entry['copyright']}"
+            logger.logger.debug(f"Formatted CSV entry: {formatted_entry}")
+            return formatted_entry
+            
         return None
 
     def generate_prompt(
@@ -115,7 +136,22 @@ class AnimaginePromptNode:
         """
         Genera los prompts finales basados en los parámetros proporcionados
         """
+        start_time = time.time()
+        
         try:
+            # Log initial state
+            logger.log_prompt_generation(
+                positive_prompt,
+                negative_prompt,
+                {
+                    "use_good_tags": use_good_tags,
+                    "use_bad_tags": use_bad_tags,
+                    "use_year": use_year,
+                    "use_rating": use_rating,
+                    "use_csv": use_csv
+                }
+            )
+            
             # Lista para construir el prompt positivo
             positive_parts = []
             
@@ -124,47 +160,77 @@ class AnimaginePromptNode:
                 good_tags = self._build_good_tags(quality_good, score_good)
                 if good_tags:
                     positive_parts.append(good_tags)
+                    logger.logger.debug(f"Added good tags: {good_tags}")
             
             # Agregar bad tags al prompt positivo si están activadas
             if use_bad_tags:
                 bad_tags = self._build_bad_tags(quality_bad, score_bad)
                 if bad_tags:
                     positive_parts.append(bad_tags)
+                    logger.logger.debug(f"Added bad tags: {bad_tags}")
             
             # Agregar entrada del CSV si está activado
             if use_csv and csv_path:
                 csv_entry = self._get_csv_entry(csv_path, csv_index)
                 if csv_entry:
                     positive_parts.append(csv_entry)
+                    logger.logger.debug(f"Added CSV entry: {csv_entry}")
 
             # Agregar el prompt base del usuario
             if positive_prompt:
                 positive_parts.append(positive_prompt)
+                logger.logger.debug(f"Added base positive prompt: {positive_prompt}")
             
             # Agregar year tag si está activado
             if use_year:
-                positive_parts.append(f"year {year}")
+                year_tag = f"year {year}"
+                positive_parts.append(year_tag)
+                logger.logger.debug(f"Added year tag: {year_tag}")
             
             # Agregar rating si está activado
             if use_rating:
                 positive_parts.append(rating)
+                logger.logger.debug(f"Added rating: {rating}")
             
             # Construir el prompt negativo
             negative_parts = []
             
             # Agregar tags negativas por defecto
             negative_parts.extend(self.DEFAULT_NEGATIVE_TAGS)
+            logger.logger.debug("Added default negative tags")
             
             # Agregar el prompt negativo del usuario
             if negative_prompt:
                 negative_parts.append(negative_prompt)
+                logger.logger.debug(f"Added user negative prompt: {negative_prompt}")
             
             # Unir todas las partes
             final_positive = ", ".join(part for part in positive_parts if part)
             final_negative = ", ".join(part for part in negative_parts if part)
             
+            end_time = time.time()
+            logger.log_performance(
+                "Prompt Generation",
+                start_time,
+                end_time,
+                {
+                    "positive_parts": len(positive_parts),
+                    "negative_parts": len(negative_parts)
+                }
+            )
+            
+            logger.logger.info("Prompt generation completed successfully")
             return final_positive, final_negative
             
         except Exception as e:
-            logger.error(f"Error generating prompt: {str(e)}")
+            logger.log_error(
+                e,
+                "Prompt Generation",
+                {
+                    "positive_prompt": positive_prompt,
+                    "negative_prompt": negative_prompt,
+                    "use_csv": use_csv,
+                    "csv_path": csv_path
+                }
+            )
             raise e
