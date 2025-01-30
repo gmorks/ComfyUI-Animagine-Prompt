@@ -7,6 +7,7 @@ import time
 from typing import Tuple, Dict, Any, List, Optional
 from .csv_handler import CSVHandler
 from .logger import logger
+from .state_manager import state_manager
 
 class AnimaginePromptNode:
     """
@@ -31,34 +32,52 @@ class AnimaginePromptNode:
     def __init__(self):
         self.csv_handler = CSVHandler()
         self.last_csv_path = None
-        logger.logger.info("AnimaginePromptNode initialized")
+        # Load last state or use defaults
+        self.current_state = state_manager.get_state()
+        if not self.current_state:
+            state_manager.reset_state()
+            self.current_state = state_manager.get_state()
+        logger.logger.info("AnimaginePromptNode initialized with saved state")
         
     @classmethod
     def INPUT_TYPES(cls) -> Dict[str, Dict[str, Any]]:
+        # Get defaults from state manager or use class defaults
+        state = state_manager.get_state()
         return {
             "required": {
                 "positive_prompt": ("STRING", {"multiline": True}),
                 "negative_prompt": ("STRING", {"multiline": True}),
                 # Good tags controls
-                "use_good_tags": ("BOOLEAN", {"default": True}),
+                "use_good_tags": ("BOOLEAN", {"default": state.get("use_good_tags", True)}),
                 "quality_good": (cls.QUALITY_TAGS_GOOD,),
                 "score_good": (cls.SCORE_TAGS_GOOD,),
                 # Bad tags controls
-                "use_bad_tags": ("BOOLEAN", {"default": False}),
+                "use_bad_tags": ("BOOLEAN", {"default": state.get("use_bad_tags", False)}),
                 "quality_bad": (cls.QUALITY_TAGS_BAD,),
                 "score_bad": (cls.SCORE_TAGS_BAD,),
                 # Year control
-                "use_year": ("BOOLEAN", {"default": False}),
-                "year": ("INT", {"default": 2024}),
+                "use_year": ("BOOLEAN", {"default": state.get("use_year", False)}),
+                "year": ("INT", {"default": state.get("year", 2024)}),
                 # Rating control
-                "use_rating": ("BOOLEAN", {"default": False}),
+                "use_rating": ("BOOLEAN", {"default": state.get("use_rating", False)}),
                 "rating": (cls.RATING_TAGS,),
                 # CSV control
-                "use_csv": ("BOOLEAN", {"default": False}),
-                "csv_path": ("STRING", {"default": ""}),
-                "csv_index": ("INT", {"default": 0, "min": 0, "max": 9999})
+                "use_csv": ("BOOLEAN", {"default": state.get("use_csv", False)}),
+                "csv_path": ("STRING", {"default": state.get("csv_path", "")}),
+                "csv_index": ("INT", {"default": state.get("csv_index", 0), "min": 0, "max": 9999})
             }
         }
+
+    def _get_csv_entry(self, csv_path: str, index: int) -> Optional[str]:
+        """Obtiene y formatea una entrada del CSV"""
+        start_time = time.time()
+        
+        if self.last_csv_path != csv_path:
+            logger.logger.info(f"Loading new CSV file: {csv_path}")
+            df = self.csv_handler.load_csv(csv_path)
+            if df is not None:
+                state_manager.add_csv_to_history(csv_path, len(df))
+            self.last_csv_path = csv_path
     
     RETURN_TYPES = ("STRING", "STRING")
     RETURN_NAMES = ("final_positive_prompt", "final_negative_prompt")
@@ -139,18 +158,18 @@ class AnimaginePromptNode:
         start_time = time.time()
         
         try:
-            # Log initial state
-            logger.log_prompt_generation(
-                positive_prompt,
-                negative_prompt,
-                {
-                    "use_good_tags": use_good_tags,
-                    "use_bad_tags": use_bad_tags,
-                    "use_year": use_year,
-                    "use_rating": use_rating,
-                    "use_csv": use_csv
-                }
-            )
+            # Update state with current values
+            state_manager.update_state({
+                "use_good_tags": use_good_tags,
+                "use_bad_tags": use_bad_tags,
+                "use_year": use_year,
+                "year": year,
+                "use_rating": use_rating,
+                "rating": rating,
+                "use_csv": use_csv,
+                "csv_path": csv_path,
+                "csv_index": csv_index
+            })
             
             # Lista para construir el prompt positivo
             positive_parts = []
