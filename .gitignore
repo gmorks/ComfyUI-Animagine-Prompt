@@ -1,1 +1,6 @@
 __pycache__/
+To-Do.md
+logs/
+config/animagine_state.json
+config/csv_history.json
+logs/animagine_prompt_20250130.log
