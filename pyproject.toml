@@ -1,0 +1,14 @@
+[project]
+name = "animagine-prompt"
+description = "Comfy UI node to prompt build for https://huggingface.co/cagliostrolab/animagine-xl-4.0 model "
+version = "1.0.1"
+license = {file = "LICENSE"}
+
+[project.urls]
+Repository = "https://github.com/gmorks/ComfyUI-Animagine-Prompt"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = "gmorks"
+DisplayName = "ComfyUI-Animagine-Prompt"
+Icon = ""
