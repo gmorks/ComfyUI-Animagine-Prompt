@@ -1,0 +1,38 @@
+Important instructions for editing this CSV file:
+
+1. **Do not change the column names**  
+   The first line contains the column names:
+
+   GENDER,CHARACTER,COPYRIGHT
+
+Do not modify these names or their format (they must be in uppercase). The script that processes this file is **case-sensitive**, so changes like "Gender" instead of "GENDER" will cause the file to not work correctly.
+
+2. **How to add new rows**  
+- Each new entry must be written on a new line below the first row.  
+- Separate each value with a comma, without extra spaces.  
+- Follow the same column order: **GENDER, CHARACTER, COPYRIGHT**.  
+
+**Example:**  
+GENDER,CHARACTER,COPYRIGHT <-- Do not change this line.
+1girl,carro pino,.live <-- First entry
+1boy,aluccard,hellsing <-- Second entry
+...
+
+3. **Allowed characters and restrictions:**  
+- You can use special characters like **parentheses ( ), backslashes \, or non-Latin characters (Japanese, Chinese, Korean, etc.).**  
+- **Do not use commas (`,`) inside values**, as they are used to separate columns.  
+- If a value needs to contain a comma (e.g., `"Doe, John"`), **enclose it in double quotes**:  
+  
+  1girl,"Doe, John",example_copyright
+  
+4. **If using Excel:**  
+- Save the file as **CSV (Comma Delimited) or CSV UTF-8**.  
+- To do this, go to **"File" > "Save As"**, and choose "CSV UTF-8 (*.csv)".  
+- **Do not save the file as Excel (.xlsx), as it will lose the necessary format.**
+
+5. **If editing in a text editor (Notepad, VS Code, etc.):**  
+- Ensure that each line follows the same format.  
+- Do not add extra spaces or commas between values.  
+- If a value contains a comma, **enclose it in double quotes**, as shown in section 3.
+
+By following these instructions, the file will (hopefully) be processed correctly without errors.
