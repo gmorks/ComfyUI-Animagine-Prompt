@@ -2,7 +2,7 @@
 
 A ComfyUI node designed to help you structure your prompts following the recommended guidelines for the [Animagine-XL-4.0](https://huggingface.co/cagliostrolab/animagine-xl-4.0) model. This node makes it easy to maintain consistency in your prompts and experiment with different combinations of quality and style tags.
 
-![Node Preview](node_preview.png)
+![Node Preview](example_workflow/example_workflow.png)
 
 ## Features
 

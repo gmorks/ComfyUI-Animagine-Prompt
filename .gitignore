@@ -1,3 +1,7 @@
 __pycache__/
 logs/
 config/
+example.csv
+sample.csv
+config/animagine_state.json
+config/csv_history.json

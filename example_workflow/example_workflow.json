@@ -1,0 +1,165 @@
+{
+  "last_node_id": 3,
+  "last_link_id": 2,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "Bjornulf_ShowText",
+      "pos": [
+        4530,
+        680
+      ],
+      "size": [
+        310,
+        190
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text_value",
+          "type": "STRING",
+          "link": 1,
+          "widget": {
+            "name": "text_value"
+          }
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "Bjornulf_ShowText"
+      },
+      "widgets_values": [
+        "",
+        "1girl, esdeath, akame ga kill!, safe, Your awesome prompt, masterpiece, best quality, absurdres, high score, great score, good score"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "AnimaginePrompt",
+      "pos": [
+        4020,
+        680
+      ],
+      "size": [
+        400,
+        458
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "POSITIVE_PROMPT",
+          "type": "STRING",
+          "links": [
+            1
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "NEGATIVE_PROMPT",
+          "type": "STRING",
+          "links": [
+            2
+          ],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "AnimaginePrompt"
+      },
+      "widgets_values": [
+        "Your awesome prompt",
+        "The things that hurts your awesome prompt",
+        true,
+        "example.csv",
+        11,
+        true,
+        "safe",
+        true,
+        "masterpiece, best quality, absurdres",
+        "high score, great score, good score",
+        false,
+        "low quality, worst quality",
+        "average score, bad score, low score",
+        false,
+        2025
+      ]
+    },
+    {
+      "id": 3,
+      "type": "Bjornulf_ShowText",
+      "pos": [
+        4530,
+        950
+      ],
+      "size": [
+        320,
+        210
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text_value",
+          "type": "STRING",
+          "link": 2,
+          "widget": {
+            "name": "text_value"
+          }
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "Bjornulf_ShowText"
+      },
+      "widgets_values": [
+        "",
+        "low quality, worst quality, blurry, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, jpeg artifacts, signature, watermark, username, artist name, The things that hurts your awesome prompt"
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      2,
+      0,
+      1,
+      0,
+      "STRING"
+    ],
+    [
+      2,
+      2,
+      1,
+      3,
+      0,
+      "STRING"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 1.015255979947709,
+      "offset": [
+        -3542.878353227748,
+        -446.1726689815277
+      ]
+    },
+    "node_versions": {
+      "animagine-prompt": "1.3.1",
+      "bjornulf_custom_nodes": "1.0.0"
+    },
+    "ue_links": [],
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}
