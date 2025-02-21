@@ -2,8 +2,7 @@ import os
 import random
 import time
 from pathlib import Path
-from dynamicprompts.parser.parse import parse
-from dynamicprompts.generators.random import RandomGenerator
+from dynamicprompts.generators import RandomPromptGenerator
 
 # Cache to store text lines per file
 text_file_cache = {}
@@ -71,10 +70,15 @@ class MultilineTextInput:
             else:
                 actual_seed = seed
                 
+            # Set random seed for reproducible results
+            random.seed(actual_seed)
+            
             # Process with dynamicprompts
-            generator = RandomGenerator(seed=actual_seed)
-            parsed_prompt = parse(text)
-            processed_text = generator.generate(parsed_prompt)[0]
+            generator = RandomPromptGenerator()
+            processed_text = generator.generate(text, num_images=1)[0]
+            
+            # Reset random seed to avoid affecting other randomness
+            random.seed(None)
             
             return (processed_text,)
         except Exception as e:

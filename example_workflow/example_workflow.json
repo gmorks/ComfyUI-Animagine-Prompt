@@ -1,50 +1,56 @@
 {
-  "last_node_id": 3,
-  "last_link_id": 2,
+  "last_node_id": 13,
+  "last_link_id": 8,
   "nodes": [
     {
-      "id": 1,
-      "type": "Bjornulf_ShowText",
+      "id": 10,
+      "type": "JjkShowText",
       "pos": [
-        4530,
-        680
+        1243,
+        528
       ],
       "size": [
-        310,
-        190
+        394,
+        197
       ],
       "flags": {},
-      "order": 1,
+      "order": 6,
       "mode": 0,
       "inputs": [
         {
-          "name": "text_value",
+          "name": "text",
           "type": "STRING",
-          "link": 1,
+          "link": 6,
           "widget": {
-            "name": "text_value"
+            "name": "text"
           }
         }
       ],
-      "outputs": [],
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": null,
+          "shape": 6
+        }
+      ],
       "properties": {
-        "Node name for S&R": "Bjornulf_ShowText"
+        "Node name for S&R": "JjkShowText"
       },
       "widgets_values": [
-        "",
-        "1girl, esdeath, akame ga kill!, safe, Your awesome prompt, masterpiece, best quality, absurdres, high score, great score, good score"
+        "Endless rolling hills with blooming wildflowers swaying in the breeze"
       ]
     },
     {
       "id": 2,
-      "type": "AnimaginePrompt",
+      "type": "MultilineTextInput",
       "pos": [
-        4020,
-        680
+        779,
+        267.3636474609375
       ],
       "size": [
         400,
-        458
+        200
       ],
       "flags": {},
       "order": 0,
@@ -52,10 +58,162 @@
       "inputs": [],
       "outputs": [
         {
-          "name": "POSITIVE_PROMPT",
+          "name": "text",
           "type": "STRING",
           "links": [
             1
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MultilineTextInput"
+      },
+      "widgets_values": [
+        "A {red|blue|green} dog",
+        true,
+        2001500457,
+        "randomize"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "JjkShowText",
+      "pos": [
+        1240,
+        264
+      ],
+      "size": [
+        394,
+        197
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 1,
+          "widget": {
+            "name": "text"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": null,
+          "shape": 6
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "JjkShowText"
+      },
+      "widgets_values": [
+        "A red dog"
+      ]
+    },
+    {
+      "id": 13,
+      "type": "JjkShowText",
+      "pos": [
+        424,
+        498
+      ],
+      "size": [
+        320,
+        228
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 8,
+          "widget": {
+            "name": "text"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": null,
+          "shape": 6
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "JjkShowText"
+      },
+      "widgets_values": [
+        "low quality, worst quality, blurry, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, jpeg artifacts, signature, watermark, username, artist name, the things that hurts your awesome prompt"
+      ]
+    },
+    {
+      "id": 12,
+      "type": "JjkShowText",
+      "pos": [
+        437,
+        163
+      ],
+      "size": [
+        296,
+        240
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 7,
+          "widget": {
+            "name": "text"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": null,
+          "shape": 6
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "JjkShowText"
+      },
+      "widgets_values": [
+        "1girl, carro pino, .live, safe, your awesome prompt, masterpiece, best quality, absurdres, high score, great score, good score"
+      ]
+    },
+    {
+      "id": 11,
+      "type": "AnimaginePrompt",
+      "pos": [
+        -10,
+        241
+      ],
+      "size": [
+        400,
+        458
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "POSITIVE_PROMPT",
+          "type": "STRING",
+          "links": [
+            7
           ],
           "slot_index": 0
         },
@@ -63,7 +221,7 @@
           "name": "NEGATIVE_PROMPT",
           "type": "STRING",
           "links": [
-            2
+            8
           ],
           "slot_index": 1
         }
@@ -72,11 +230,11 @@
         "Node name for S&R": "AnimaginePrompt"
       },
       "widgets_values": [
-        "Your awesome prompt",
-        "The things that hurts your awesome prompt",
+        "your awesome prompt",
+        "the things that hurts your awesome prompt",
         true,
         "example.csv",
-        11,
+        0,
         true,
         "safe",
         true,
@@ -86,40 +244,42 @@
         "low quality, worst quality",
         "average score, bad score, low score",
         false,
-        2025
+        2024
       ]
     },
     {
-      "id": 3,
-      "type": "Bjornulf_ShowText",
+      "id": 9,
+      "type": "TextFileLoader",
       "pos": [
-        4530,
-        950
+        779,
+        529
       ],
       "size": [
-        320,
-        210
+        403.5999755859375,
+        180
       ],
       "flags": {},
       "order": 2,
       "mode": 0,
-      "inputs": [
+      "inputs": [],
+      "outputs": [
         {
-          "name": "text_value",
+          "name": "selected_line",
           "type": "STRING",
-          "link": 2,
-          "widget": {
-            "name": "text_value"
-          }
+          "links": [
+            6
+          ],
+          "slot_index": 0
         }
       ],
-      "outputs": [],
       "properties": {
-        "Node name for S&R": "Bjornulf_ShowText"
+        "Node name for S&R": "TextFileLoader"
       },
       "widgets_values": [
-        "",
-        "low quality, worst quality, blurry, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, jpeg artifacts, signature, watermark, username, artist name, The things that hurts your awesome prompt"
+        "example_wildcards.txt",
+        -1,
+        1375516804,
+        "randomize"
       ]
     }
   ],
@@ -128,15 +288,31 @@
       1,
       2,
       0,
-      1,
+      3,
       0,
       "STRING"
     ],
     [
-      2,
-      2,
+      6,
+      9,
+      0,
+      10,
+      0,
+      "STRING"
+    ],
+    [
+      7,
+      11,
+      0,
+      12,
+      0,
+      "STRING"
+    ],
+    [
+      8,
+      11,
       1,
-      3,
+      13,
       0,
       "STRING"
     ]
@@ -145,21 +321,17 @@
   "config": {},
   "extra": {
     "ds": {
-      "scale": 1.015255979947709,
+      "scale": 1,
       "offset": [
-        -3542.878353227748,
-        -446.1726689815277
+        159,
+        14
       ]
     },
     "node_versions": {
-      "animagine-prompt": "1.3.1",
-      "bjornulf_custom_nodes": "1.0.0"
+      "ComfyUI-Jjk-Nodes": "b3c99bb78a99551776b5eab1a820e1cd58f84f31",
+      "ComfyUI-Animagine-prompt": "4f0855ce259ac48ae59468d4ce5a8b726a8b2923"
     },
-    "ue_links": [],
-    "VHS_latentpreview": false,
-    "VHS_latentpreviewrate": 0,
-    "VHS_MetadataImage": true,
-    "VHS_KeepIntermediate": true
+    "ue_links": []
   },
   "version": 0.4
 }
