@@ -2,10 +2,10 @@
 Animagine Prompt Node for ComfyUI
 A node designed to help structure prompts according to specific guidelines
 """
-
 import os
 import logging
 from .animagine_node import AnimaginePromptNode
+from .wildcards_node import MultilineTextInput, TextFileLoader
 
 # Basic logging configuration
 logging.basicConfig(
@@ -24,12 +24,16 @@ if not os.path.exists(SAMPLE_DATA_DIR):
 
 # Mapping for node registration
 NODE_CLASS_MAPPINGS = {
-    "AnimaginePrompt": AnimaginePromptNode
+    "AnimaginePrompt": AnimaginePromptNode,
+    "MultilineTextInput": MultilineTextInput,
+    "TextFileLoader": TextFileLoader
 }
 
 # Mapping for display name
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "AnimaginePrompt": "Animagine Prompt"
+    "AnimaginePrompt": "Animagine Prompt",
+    "MultilineTextInput": "Multiline Text Input",
+    "TextFileLoader": "Wildcards Text File Loader"
 }
 
-__version__ = "1.0.1"
+__version__ = "1.4.1"  # Incrementado debido a los nuevos nodos
