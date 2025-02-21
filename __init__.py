@@ -36,4 +36,5 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "TextFileLoader": "Wildcards Text File Loader"
 }
 
-__version__ = "1.4.2"  # Incrementado debido a los nuevos nodos
+
+__version__ = "1.4.3"

@@ -11,6 +11,14 @@ A ComfyUI node designed to help you structure your prompts following the recomme
 - **Flexible Controls**: Toggle different tag groups on/off as needed
 - **Built-in Best Practices**: Incorporates recommended negative prompts and tag structures
 
+### Additional Nodes
+
+This version now includes two new nodes:
+
+  - **Multiline Text Input**: Provides a multiline text input that supports dynamic syntax (e.g., variants and wildcards) using the [dynamicprompts](https://github.com/adieyal/dynamicprompts) module. It processes the input text to generate dynamic variations in your prompts.
+
+  - **Wildcards Text File Loader**: Loads a text file and returns a specific or random line, making it easier to incorporate wildcards into prompt generation.
+
 ## Installation
 
 1. Navigate to your ComfyUI custom nodes directory

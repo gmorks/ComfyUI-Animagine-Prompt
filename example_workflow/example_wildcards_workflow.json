@@ -1,0 +1,189 @@
+{
+  "last_node_id": 10,
+  "last_link_id": 6,
+  "nodes": [
+    {
+      "id": 10,
+      "type": "JjkShowText",
+      "pos": [
+        1243,
+        528
+      ],
+      "size": [
+        394,
+        197
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 6,
+          "widget": {
+            "name": "text"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": null,
+          "shape": 6
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "JjkShowText"
+      },
+      "widgets_values": [
+        "A tranquil lake reflecting the vibrant colors of a breathtaking sunset"
+      ]
+    },
+    {
+      "id": 9,
+      "type": "TextFileLoader",
+      "pos": [
+        779,
+        529
+      ],
+      "size": [
+        412.5999755859375,
+        180
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "selected_line",
+          "type": "STRING",
+          "links": [
+            6
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "TextFileLoader"
+      },
+      "widgets_values": [
+        "example_wildcards\\example_wildcards.txt",
+        -1,
+        3664717384,
+        "randomize"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "MultilineTextInput",
+      "pos": [
+        784.0906372070312,
+        267.3636474609375
+      ],
+      "size": [
+        400,
+        200
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": [
+            1
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MultilineTextInput"
+      },
+      "widgets_values": [
+        "A {red|blue|green} dog",
+        true,
+        3098594102,
+        "randomize"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "JjkShowText",
+      "pos": [
+        1240,
+        264
+      ],
+      "size": [
+        394,
+        197
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 1,
+          "widget": {
+            "name": "text"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": null,
+          "shape": 6
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "JjkShowText"
+      },
+      "widgets_values": [
+        "A red dog"
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      2,
+      0,
+      3,
+      0,
+      "STRING"
+    ],
+    [
+      6,
+      9,
+      0,
+      10,
+      0,
+      "STRING"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 1,
+      "offset": [
+        -300,
+        -44
+      ]
+    },
+    "node_versions": {
+      "ComfyUI-Jjk-Nodes": "b3c99bb78a99551776b5eab1a820e1cd58f84f31",
+      "ComfyUI-Animagine-prompt": "4f0855ce259ac48ae59468d4ce5a8b726a8b2923"
+    },
+    "ue_links": []
+  },
+  "version": 0.4
+}
