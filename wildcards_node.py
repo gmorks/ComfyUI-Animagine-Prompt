@@ -200,7 +200,7 @@ class MultiWildcardLoader:
     """
     A node that loads multiple wildcard files and concatenates their selected lines.
     Supports template mode with placeholder syntax like {filename.txt}.
-    Each wildcard has its own independent seed for varied selections.
+    Uses line_index system like TextFileLoader for consistent selection.
     """
     CATEGORY = "Animagine-Prompt"
     
@@ -221,12 +221,12 @@ class MultiWildcardLoader:
                     "default": ", ",
                     "placeholder": "Separator between wildcards (slots mode only)"
                 }),
-                "global_seed": ("INT", {
+                "seed": ("INT", {
                     "default": -1,
                     "min": -1,
                     "max": 2**32 - 1,
                     "display": "number",
-                    "tooltip": "Global seed offset (-1 for random)"
+                    "tooltip": "Seed for random selection (-1 for time-based seed)"
                 })
             },
             "optional": {
@@ -239,12 +239,11 @@ class MultiWildcardLoader:
                     "default": True,
                     "label": "Enable Wildcard 1"
                 }),
-                "wildcard_1_seed": ("INT", {
+                "wildcard_1_line_index": ("INT", {
                     "default": -1,
                     "min": -1,
-                    "max": 2**32 - 1,
                     "display": "number",
-                    "tooltip": "Seed for wildcard 1 (-1 for auto)"
+                    "tooltip": "Line index for wildcard 1 (-1 for random)"
                 }),
                 
                 # Wildcard slot 2
@@ -256,12 +255,11 @@ class MultiWildcardLoader:
                     "default": True,
                     "label": "Enable Wildcard 2"
                 }),
-                "wildcard_2_seed": ("INT", {
+                "wildcard_2_line_index": ("INT", {
                     "default": -1,
                     "min": -1,
-                    "max": 2**32 - 1,
                     "display": "number",
-                    "tooltip": "Seed for wildcard 2 (-1 for auto)"
+                    "tooltip": "Line index for wildcard 2 (-1 for random)"
                 }),
                 
                 # Wildcard slot 3
@@ -273,12 +271,11 @@ class MultiWildcardLoader:
                     "default": True,
                     "label": "Enable Wildcard 3"
                 }),
-                "wildcard_3_seed": ("INT", {
+                "wildcard_3_line_index": ("INT", {
                     "default": -1,
                     "min": -1,
-                    "max": 2**32 - 1,
                     "display": "number",
-                    "tooltip": "Seed for wildcard 3 (-1 for auto)"
+                    "tooltip": "Line index for wildcard 3 (-1 for random)"
                 }),
                 
                 # Wildcard slot 4
@@ -290,12 +287,11 @@ class MultiWildcardLoader:
                     "default": True,
                     "label": "Enable Wildcard 4"
                 }),
-                "wildcard_4_seed": ("INT", {
+                "wildcard_4_line_index": ("INT", {
                     "default": -1,
                     "min": -1,
-                    "max": 2**32 - 1,
                     "display": "number",
-                    "tooltip": "Seed for wildcard 4 (-1 for auto)"
+                    "tooltip": "Line index for wildcard 4 (-1 for random)"
                 }),
                 
                 # Wildcard slot 5
@@ -307,12 +303,11 @@ class MultiWildcardLoader:
                     "default": True,
                     "label": "Enable Wildcard 5"
                 }),
-                "wildcard_5_seed": ("INT", {
+                "wildcard_5_line_index": ("INT", {
                     "default": -1,
                     "min": -1,
-                    "max": 2**32 - 1,
                     "display": "number",
-                    "tooltip": "Seed for wildcard 5 (-1 for auto)"
+                    "tooltip": "Line index for wildcard 5 (-1 for random)"
                 })
             }
         }
@@ -322,7 +317,7 @@ class MultiWildcardLoader:
     FUNCTION = "load_multiple_wildcards"
     
     @classmethod
-    def IS_CHANGED(s, mode, template_text, separator, global_seed, **kwargs):
+    def IS_CHANGED(s, mode, template_text, separator, seed, **kwargs):
         """
         This method tells ComfyUI when the node output should be recalculated.
         It helps with real-time preview by making the output update when parameters change.
@@ -331,14 +326,14 @@ class MultiWildcardLoader:
         import hashlib
         
         # Combine all parameters into a string
-        params_str = f"{mode}_{template_text}_{separator}_{global_seed}"
+        params_str = f"{mode}_{template_text}_{separator}_{seed}"
         
         # Add wildcard parameters
         for i in range(1, 6):
             path = kwargs.get(f"wildcard_{i}_path", "")
             enabled = kwargs.get(f"wildcard_{i}_enabled", True)
-            seed = kwargs.get(f"wildcard_{i}_seed", -1)
-            params_str += f"_{path}_{enabled}_{seed}"
+            line_index = kwargs.get(f"wildcard_{i}_line_index", -1)
+            params_str += f"_{path}_{enabled}_{line_index}"
         
         # Return hash of parameters - when this changes, ComfyUI will recalculate
         return hashlib.md5(params_str.encode()).hexdigest()
@@ -376,13 +371,14 @@ class MultiWildcardLoader:
         # Return original path (will cause error in load_text_line if not found)
         return file_path
     
-    def _load_wildcard_line(self, file_path, seed_offset):
+    def _load_wildcard_line(self, file_path, line_index, seed):
         """
-        Load a random line from a wildcard file using the TextFileLoader logic.
+        Load a line from a wildcard file using the TextFileLoader logic.
         
         Args:
             file_path (str): Path to the wildcard file
-            seed_offset (int): Seed offset for this wildcard
+            line_index (int): Index of line to select (-1 for random)
+            seed (int): Seed for random selection
             
         Returns:
             str: Selected line or error message
@@ -419,28 +415,37 @@ class MultiWildcardLoader:
             if not lines:
                 return f"Error: File {os.path.basename(resolved_path)} is empty"
             
-            # Generate seed for this wildcard
-            current_time = time.time()
-            if seed_offset == -1:
-                wildcard_seed = int(current_time * 1000) % (2**32)
-            else:
-                wildcard_seed = (seed_offset + int(current_time)) % (2**32)
+            # Select line
+            if line_index == -1:
+                # Set up random seed for consistent but different choices
+                current_time = time.time()
+                if seed == -1:
+                    # Time-based seed ensures different choice on each run
+                    random_seed = int(current_time * 1000) % (2**32)
+                else:
+                    # User-provided seed for reproducible randomness
+                    random_seed = seed
+                    
+                # Set the seed for this selection
+                random.seed(random_seed)
                 
-            # Set the seed for this selection
-            random.seed(wildcard_seed)
-            
-            # Random selection
-            selected_line = random.choice(lines)
-            
-            # Reset random seed to avoid affecting other randomness
-            random.seed(None)
+                # Random selection
+                selected_line = random.choice(lines)
+                
+                # Reset random seed to avoid affecting other randomness
+                random.seed(None)
+            else:
+                # Check if index is valid
+                if line_index < 0 or line_index >= len(lines):
+                    return f"Error: Line index {line_index} out of range (0-{len(lines)-1}) for {os.path.basename(resolved_path)}"
+                selected_line = lines[line_index]
             
             return selected_line
             
         except Exception as e:
             return f"Error loading {os.path.basename(file_path) if file_path else 'file'}: {str(e)}"
     
-    def load_multiple_wildcards(self, mode, template_text, separator, global_seed, **kwargs):
+    def load_multiple_wildcards(self, mode, template_text, separator, seed, **kwargs):
         """
         Load multiple wildcard files and combine their content.
         
@@ -448,8 +453,8 @@ class MultiWildcardLoader:
             mode (str): "slots" or "template" mode
             template_text (str): Template text with {filename.txt} placeholders
             separator (str): Separator between wildcards (slots mode only)
-            global_seed (int): Global seed offset
-            **kwargs: Wildcard paths, enabled flags, and individual seeds
+            seed (int): Seed for random selection
+            **kwargs: Wildcard paths, enabled flags, and line indices
             
         Returns:
             tuple: Contains the combined text and preview text
@@ -461,21 +466,21 @@ class MultiWildcardLoader:
             last_execution_time[node_instance_id] = current_time
             
             if mode == "template":
-                return self._process_template_mode(template_text, global_seed)
+                return self._process_template_mode(template_text, seed)
             else:
-                return self._process_slots_mode(separator, global_seed, **kwargs)
+                return self._process_slots_mode(separator, seed, **kwargs)
                 
         except Exception as e:
             error_msg = f"Multi-Wildcard Error: {str(e)}"
             return (error_msg, error_msg)
     
-    def _process_template_mode(self, template_text, global_seed):
+    def _process_template_mode(self, template_text, seed):
         """
         Process template mode by finding {filename.txt} placeholders and replacing them.
         
         Args:
             template_text (str): Template with placeholders
-            global_seed (int): Global seed offset
+            seed (int): Seed for random selection
             
         Returns:
             tuple: Processed template text and preview text
@@ -493,14 +498,14 @@ class MultiWildcardLoader:
         
         # Process each placeholder
         for i, filename in enumerate(placeholders):
-            # Calculate seed for this wildcard
-            if global_seed == -1:
-                seed_offset = -1
+            # Calculate seed for this wildcard (offset by position)
+            if seed == -1:
+                wildcard_seed = -1
             else:
-                seed_offset = global_seed + i
+                wildcard_seed = seed + i
                 
-            # Load wildcard line
-            selected_line = self._load_wildcard_line(filename, seed_offset)
+            # Load wildcard line (always random selection in template mode)
+            selected_line = self._load_wildcard_line(filename, -1, wildcard_seed)
             
             # Replace the first occurrence of this placeholder
             placeholder = '{' + filename + '}'
@@ -508,13 +513,13 @@ class MultiWildcardLoader:
         
         return (result_text, result_text)
     
-    def _process_slots_mode(self, separator, global_seed, **kwargs):
+    def _process_slots_mode(self, separator, seed, **kwargs):
         """
         Process slots mode by loading enabled wildcards and joining with separator.
         
         Args:
             separator (str): Separator between wildcards
-            global_seed (int): Global seed offset
+            seed (int): Seed for random selection
             **kwargs: Wildcard configuration
             
         Returns:
@@ -526,27 +531,25 @@ class MultiWildcardLoader:
         for i in range(1, 6):  # 5 slots
             path_key = f"wildcard_{i}_path"
             enabled_key = f"wildcard_{i}_enabled"
-            seed_key = f"wildcard_{i}_seed"
+            line_index_key = f"wildcard_{i}_line_index"
             
             # Get values with defaults
             file_path = kwargs.get(path_key, "")
             enabled = kwargs.get(enabled_key, True)
-            individual_seed = kwargs.get(seed_key, -1)
+            line_index = kwargs.get(line_index_key, -1)
             
             # Skip if not enabled or no path
             if not enabled or not file_path or not file_path.strip():
                 continue
             
-            # Calculate seed for this wildcard
-            if individual_seed != -1:
-                seed_offset = individual_seed
-            elif global_seed != -1:
-                seed_offset = global_seed + i
+            # Calculate seed for this wildcard (offset by position)
+            if seed == -1:
+                wildcard_seed = -1
             else:
-                seed_offset = -1
+                wildcard_seed = seed + i
             
             # Load wildcard line
-            selected_line = self._load_wildcard_line(file_path, seed_offset)
+            selected_line = self._load_wildcard_line(file_path, line_index, wildcard_seed)
             
             # Only add if not an error message
             if not selected_line.startswith("Error:"):
