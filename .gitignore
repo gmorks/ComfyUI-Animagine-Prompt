@@ -3,3 +3,5 @@ logs/
 config/
 config/animagine_state.json
 config/csv_history.json
+references/
+.memory-bank/
