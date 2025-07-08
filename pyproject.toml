@@ -7,7 +7,7 @@ license = {file = "LICENSE"}
 
 [project.urls]
 Repository = "https://github.com/gmorks/ComfyUI-Animagine-Prompt"
-#  Used by Comfy Registry https://comfyregistry.org
+#  Used by Comfy Registry https://registry.comfy.org
 
 [tool.comfy]
 PublisherId = "gmorks"
