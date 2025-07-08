@@ -111,7 +111,7 @@ class AnimaginePromptNode:
     RETURN_TYPES = ("STRING", "STRING")
     RETURN_NAMES = ("POSITIVE_PROMPT", "NEGATIVE_PROMPT")
     FUNCTION = "generate_prompt"
-    CATEGORY = "prompt"
+    CATEGORY = "Animagine-Prompt"
 
     def _build_good_tags(self, quality_good: str, score_good: str) -> str:
         """Build the positive tags section"""

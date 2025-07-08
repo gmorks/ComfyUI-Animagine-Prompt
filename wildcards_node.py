@@ -14,7 +14,7 @@ class MultilineTextInput:
     A node that provides a multiline text input and outputs the entered text as a string.
     Now supports dynamicprompts syntax for variants and wildcards.
     """
-    CATEGORY = "animagine/text"
+    CATEGORY = "Animagine-Prompt"
     
     @classmethod
     def INPUT_TYPES(s):
@@ -90,7 +90,7 @@ class TextFileLoader:
     A node that loads a text file and returns a specific line or a random line.
     Ensures random choices are refreshed on each workflow execution.
     """
-    CATEGORY = "animagine/text"
+    CATEGORY = "Animagine-Prompt"
     
     @classmethod
     def INPUT_TYPES(s):
@@ -202,7 +202,7 @@ class MultiWildcardLoader:
     Supports template mode with placeholder syntax like {filename.txt}.
     Each wildcard has its own independent seed for varied selections.
     """
-    CATEGORY = "animagine/text"
+    CATEGORY = "Animagine-Prompt"
     
     @classmethod
     def INPUT_TYPES(s):
