@@ -2,7 +2,7 @@
 name = "animagine-prompt"
 description = "Comfy UI node to prompt build for https://huggingface.co/cagliostrolab/animagine-xl-4.0 model "
 
-version = "1.5.0"
+version = "1.5.1"
 license = {file = "LICENSE"}
 
 [project.urls]
