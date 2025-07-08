@@ -1,196 +1,202 @@
 {
-  "last_node_id": 13,
-  "last_link_id": 8,
+  "id": "82357ebe-40e9-4beb-b9f5-097ab9863b04",
+  "revision": 0,
+  "last_node_id": 22,
+  "last_link_id": 16,
   "nodes": [
     {
-      "id": 10,
-      "type": "JjkShowText",
+      "id": 17,
+      "type": "DisplayValue",
       "pos": [
-        1243,
-        528
+        1837.260009765625,
+        215.26971435546875
       ],
       "size": [
-        394,
-        197
+        210,
+        88
       ],
       "flags": {},
-      "order": 6,
+      "order": 7,
       "mode": 0,
       "inputs": [
         {
-          "name": "text",
-          "type": "STRING",
-          "link": 6,
-          "widget": {
-            "name": "text"
-          }
+          "name": "value",
+          "type": "*",
+          "link": 11
         }
       ],
       "outputs": [
         {
-          "name": "text",
+          "name": "STRING",
+          "shape": 6,
           "type": "STRING",
-          "links": null,
-          "shape": 6
+          "links": null
         }
       ],
       "properties": {
-        "Node name for S&R": "JjkShowText"
+        "cnr_id": "comfyui-display-value",
+        "ver": "1.0.3",
+        "Node name for S&R": "DisplayValue",
+        "preview": "confident stretching wearing winter coat in a busy cafe"
       },
       "widgets_values": [
-        "Endless rolling hills with blooming wildflowers swaying in the breeze"
+        "confident stretching wearing winter coat in a busy cafe"
       ]
     },
     {
-      "id": 2,
-      "type": "MultilineTextInput",
+      "id": 18,
+      "type": "DisplayValue",
       "pos": [
-        779,
-        267.3636474609375
+        435.4519958496094,
+        215.26971435546875
       ],
       "size": [
-        400,
-        200
-      ],
-      "flags": {},
-      "order": 0,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "text",
-          "type": "STRING",
-          "links": [
-            1
-          ],
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "MultilineTextInput"
-      },
-      "widgets_values": [
-        "A {red|blue|green} dog",
-        true,
-        2001500457,
-        "randomize"
-      ]
-    },
-    {
-      "id": 3,
-      "type": "JjkShowText",
-      "pos": [
-        1240,
-        264
-      ],
-      "size": [
-        394,
-        197
-      ],
-      "flags": {},
-      "order": 3,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "text",
-          "type": "STRING",
-          "link": 1,
-          "widget": {
-            "name": "text"
-          }
-        }
-      ],
-      "outputs": [
-        {
-          "name": "text",
-          "type": "STRING",
-          "links": null,
-          "shape": 6
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "JjkShowText"
-      },
-      "widgets_values": [
-        "A red dog"
-      ]
-    },
-    {
-      "id": 13,
-      "type": "JjkShowText",
-      "pos": [
-        424,
-        498
-      ],
-      "size": [
-        320,
-        228
-      ],
-      "flags": {},
-      "order": 5,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "text",
-          "type": "STRING",
-          "link": 8,
-          "widget": {
-            "name": "text"
-          }
-        }
-      ],
-      "outputs": [
-        {
-          "name": "text",
-          "type": "STRING",
-          "links": null,
-          "shape": 6
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "JjkShowText"
-      },
-      "widgets_values": [
-        "low quality, worst quality, blurry, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, jpeg artifacts, signature, watermark, username, artist name, the things that hurts your awesome prompt"
-      ]
-    },
-    {
-      "id": 12,
-      "type": "JjkShowText",
-      "pos": [
-        437,
-        163
-      ],
-      "size": [
-        296,
-        240
+        210,
+        88
       ],
       "flags": {},
       "order": 4,
       "mode": 0,
       "inputs": [
         {
-          "name": "text",
-          "type": "STRING",
-          "link": 7,
-          "widget": {
-            "name": "text"
-          }
+          "name": "value",
+          "type": "*",
+          "link": 12
         }
       ],
       "outputs": [
         {
-          "name": "text",
+          "name": "STRING",
+          "shape": 6,
           "type": "STRING",
-          "links": null,
-          "shape": 6
+          "links": null
         }
       ],
       "properties": {
-        "Node name for S&R": "JjkShowText"
+        "cnr_id": "comfyui-display-value",
+        "ver": "1.0.3",
+        "Node name for S&R": "DisplayValue",
+        "preview": "1girl, carro pino, .live, safe, your awesome prompt, masterpiece, best quality, absurdres, high score, great score, good score"
       },
       "widgets_values": [
         "1girl, carro pino, .live, safe, your awesome prompt, masterpiece, best quality, absurdres, high score, great score, good score"
+      ]
+    },
+    {
+      "id": 19,
+      "type": "DisplayValue",
+      "pos": [
+        435.4519958496094,
+        395.8799743652344
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "value",
+          "type": "*",
+          "link": 13
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "shape": 6,
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-display-value",
+        "ver": "1.0.3",
+        "Node name for S&R": "DisplayValue",
+        "preview": "low quality, worst quality, blurry, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, jpeg artifacts, signature, watermark, username, artist name, the things that hurts your awesome prompt"
+      },
+      "widgets_values": [
+        "low quality, worst quality, blurry, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, jpeg artifacts, signature, watermark, username, artist name, the things that hurts your awesome prompt"
+      ]
+    },
+    {
+      "id": 20,
+      "type": "DisplayValue",
+      "pos": [
+        1136.35595703125,
+        215.26971435546875
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "value",
+          "type": "*",
+          "link": 14
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "shape": 6,
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-display-value",
+        "ver": "1.0.3",
+        "Node name for S&R": "DisplayValue",
+        "preview": "A red dog"
+      },
+      "widgets_values": [
+        "A red dog"
+      ]
+    },
+    {
+      "id": 21,
+      "type": "DisplayValue",
+      "pos": [
+        1136.35595703125,
+        514.7800903320312
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "value",
+          "type": "*",
+          "link": 15
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "shape": 6,
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-display-value",
+        "ver": "1.0.3",
+        "Node name for S&R": "DisplayValue",
+        "preview": "relaxed"
+      },
+      "widgets_values": [
+        "relaxed"
       ]
     },
     {
@@ -198,35 +204,37 @@
       "type": "AnimaginePrompt",
       "pos": [
         -10,
-        241
+        215.26971435546875
       ],
       "size": [
         400,
-        458
+        474
       ],
       "flags": {},
-      "order": 1,
+      "order": 0,
       "mode": 0,
       "inputs": [],
       "outputs": [
         {
           "name": "POSITIVE_PROMPT",
           "type": "STRING",
+          "slot_index": 0,
           "links": [
-            7
-          ],
-          "slot_index": 0
+            12
+          ]
         },
         {
           "name": "NEGATIVE_PROMPT",
           "type": "STRING",
+          "slot_index": 1,
           "links": [
-            8
-          ],
-          "slot_index": 1
+            13
+          ]
         }
       ],
       "properties": {
+        "cnr_id": "animagine-prompt",
+        "ver": "8734c5115cbde087660d835dfe3a6c63ebcb7d49",
         "Node name for S&R": "AnimaginePrompt"
       },
       "widgets_values": [
@@ -248,15 +256,91 @@
       ]
     },
     {
-      "id": 9,
-      "type": "TextFileLoader",
+      "id": 2,
+      "type": "MultilineTextInput",
       "pos": [
-        779,
-        529
+        690.9039916992188,
+        215.26971435546875
       ],
       "size": [
-        403.5999755859375,
-        180
+        400,
+        200
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "slot_index": 0,
+          "links": [
+            14
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "animagine-prompt",
+        "ver": "8734c5115cbde087660d835dfe3a6c63ebcb7d49",
+        "Node name for S&R": "MultilineTextInput"
+      },
+      "widgets_values": [
+        "A {red|blue|green} dog",
+        true,
+        196340664,
+        "randomize"
+      ]
+    },
+    {
+      "id": 22,
+      "type": "DisplayValue",
+      "pos": [
+        1837.260009765625,
+        371.51971435546875
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "value",
+          "type": "*",
+          "link": 16
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "shape": 6,
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-display-value",
+        "ver": "1.0.3",
+        "Node name for S&R": "DisplayValue",
+        "preview": "confident stretching wearing winter coat in a busy cafe"
+      },
+      "widgets_values": [
+        "confident stretching wearing winter coat in a busy cafe"
+      ]
+    },
+    {
+      "id": 16,
+      "type": "MultiWildcardLoader",
+      "pos": [
+        1391.8079833984375,
+        215.26971435546875
+      ],
+      "size": [
+        400,
+        540
       ],
       "flags": {},
       "order": 2,
@@ -264,74 +348,151 @@
       "inputs": [],
       "outputs": [
         {
-          "name": "selected_line",
+          "name": "combined_text",
           "type": "STRING",
           "links": [
-            6
-          ],
-          "slot_index": 0
+            11
+          ]
+        },
+        {
+          "name": "preview_text",
+          "type": "STRING",
+          "links": [
+            16
+          ]
         }
       ],
       "properties": {
+        "cnr_id": "animagine-prompt",
+        "ver": "8734c5115cbde087660d835dfe3a6c63ebcb7d49",
+        "Node name for S&R": "MultiWildcardLoader"
+      },
+      "widgets_values": [
+        "template",
+        "{expressions.txt} {poses.txt} wearing {clothing.txt} in a {scenarios.txt}",
+        ", ",
+        -1,
+        "",
+        true,
+        -1,
+        "",
+        true,
+        -1,
+        "",
+        true,
+        -1,
+        "",
+        true,
+        -1,
+        "",
+        true,
+        -1
+      ]
+    },
+    {
+      "id": 9,
+      "type": "TextFileLoader",
+      "pos": [
+        690.9039916992188,
+        514.7800903320312
+      ],
+      "size": [
+        403.5999755859375,
+        180
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "selected_line",
+          "type": "STRING",
+          "slot_index": 0,
+          "links": [
+            15
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "animagine-prompt",
+        "ver": "8734c5115cbde087660d835dfe3a6c63ebcb7d49",
         "Node name for S&R": "TextFileLoader"
       },
       "widgets_values": [
-        "example_wildcards.txt",
+        "wildcards\\expressions.txt",
         -1,
-        1375516804,
+        4006281810,
         "randomize"
       ]
     }
   ],
   "links": [
     [
+      11,
+      16,
+      0,
+      17,
+      0,
+      "*"
+    ],
+    [
+      12,
+      11,
+      0,
+      18,
+      0,
+      "*"
+    ],
+    [
+      13,
+      11,
       1,
+      19,
+      0,
+      "*"
+    ],
+    [
+      14,
       2,
       0,
-      3,
+      20,
       0,
-      "STRING"
+      "*"
     ],
     [
-      6,
+      15,
       9,
       0,
-      10,
+      21,
       0,
-      "STRING"
+      "*"
     ],
     [
-      7,
-      11,
-      0,
-      12,
-      0,
-      "STRING"
-    ],
-    [
-      8,
-      11,
+      16,
+      16,
       1,
-      13,
+      22,
       0,
-      "STRING"
+      "*"
     ]
   ],
   "groups": [],
   "config": {},
   "extra": {
     "ds": {
-      "scale": 1,
+      "scale": 0.8264462809917354,
       "offset": [
-        159,
-        14
+        76.06999999999984,
+        30.500000000000014
       ]
     },
     "node_versions": {
       "ComfyUI-Jjk-Nodes": "b3c99bb78a99551776b5eab1a820e1cd58f84f31",
       "ComfyUI-Animagine-prompt": "4f0855ce259ac48ae59468d4ce5a8b726a8b2923"
     },
-    "ue_links": []
+    "ue_links": [],
+    "frontendVersion": "1.23.4"
   },
   "version": 0.4
 }

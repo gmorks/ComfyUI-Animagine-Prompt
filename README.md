@@ -13,11 +13,13 @@ A ComfyUI node designed to help you structure your prompts following the recomme
 
 ### Additional Nodes
 
-This version now includes two new nodes:
+This version now includes three additional nodes:
 
   - **Multiline Text Input**: Provides a multiline text input that supports dynamic syntax (e.g., variants and wildcards) using the [dynamicprompts](https://github.com/adieyal/dynamicprompts) module. It processes the input text to generate dynamic variations in your prompts.
 
   - **Wildcards Text File Loader**: Loads a text file and returns a specific or random line, making it easier to incorporate wildcards into prompt generation.
+
+  - **Multi Wildcard Loader**: Advanced wildcard management node that supports multiple wildcard files simultaneously. Features template mode for structured prompt building and slots mode for flexible wildcard combinations. Includes individual seed control for each wildcard slot and preview output for real-time text generation monitoring.
 
 ## Installation
 

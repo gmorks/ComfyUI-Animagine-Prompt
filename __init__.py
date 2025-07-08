@@ -5,7 +5,7 @@ A node designed to help structure prompts according to specific guidelines
 import os
 import logging
 from .animagine_node import AnimaginePromptNode
-from .wildcards_node import MultilineTextInput, TextFileLoader
+from .wildcards_node import MultilineTextInput, TextFileLoader, MultiWildcardLoader
 
 # Basic logging configuration
 logging.basicConfig(
@@ -26,15 +26,17 @@ if not os.path.exists(SAMPLE_DATA_DIR):
 NODE_CLASS_MAPPINGS = {
     "AnimaginePrompt": AnimaginePromptNode,
     "MultilineTextInput": MultilineTextInput,
-    "TextFileLoader": TextFileLoader
+    "TextFileLoader": TextFileLoader,
+    "MultiWildcardLoader": MultiWildcardLoader
 }
 
 # Mapping for display name
 NODE_DISPLAY_NAME_MAPPINGS = {
     "AnimaginePrompt": "Animagine Prompt",
     "MultilineTextInput": "Multiline Text Input",
-    "TextFileLoader": "Wildcards Text File Loader"
+    "TextFileLoader": "Wildcards Text File Loader",
+    "MultiWildcardLoader": "Multi-Wildcard Loader"
 }
 
 
-__version__ = "1.4.4"
+__version__ = "1.5.0"

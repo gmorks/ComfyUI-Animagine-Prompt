@@ -1,0 +1,20 @@
+standing
+sitting
+walking
+running
+jumping
+dancing
+leaning
+stretching
+crouching
+kneeling
+lying down
+floating
+flying
+climbing
+swimming
+posing
+relaxing
+meditating
+exercising
+working
