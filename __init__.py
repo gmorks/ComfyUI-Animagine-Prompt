@@ -1,11 +1,11 @@
-"""
-Animagine Prompt Node for ComfyUI
+"""Animagine Prompt Node for ComfyUI
 A node designed to help structure prompts according to specific guidelines
 """
 import os
 import logging
 from .animagine_node import AnimaginePromptNode
 from .wildcards_node import MultilineTextInput, TextFileLoader, MultiWildcardLoader
+from .api_routes import define_routes
 
 # Basic logging configuration
 logging.basicConfig(
@@ -22,7 +22,7 @@ SAMPLE_DATA_DIR = os.path.join(NODE_DIR, "sample_data")
 if not os.path.exists(SAMPLE_DATA_DIR):
     os.makedirs(SAMPLE_DATA_DIR)
 
-# Mapping for node registration
+# Node class mappings for registration
 NODE_CLASS_MAPPINGS = {
     "AnimaginePrompt": AnimaginePromptNode,
     "MultilineTextInput": MultilineTextInput,
@@ -30,7 +30,7 @@ NODE_CLASS_MAPPINGS = {
     "MultiWildcardLoader": MultiWildcardLoader
 }
 
-# Mapping for display name
+# Display name mappings for nodes
 NODE_DISPLAY_NAME_MAPPINGS = {
     "AnimaginePrompt": "Animagine Prompt",
     "MultilineTextInput": "Multiline Text Input",
@@ -38,5 +38,11 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "MultiWildcardLoader": "Multi-Wildcard Loader"
 }
 
+# Web directory configuration for JavaScript extensions
+WEB_DIRECTORY = "./web"
 
-__version__ = "1.5.0"
+# Register API routes directly
+define_routes()
+logger.info("[Animagine Prompt] API routes initialized")
+
+__version__ = "1.6.0"

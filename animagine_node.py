@@ -165,6 +165,49 @@ class AnimaginePromptNode:
 
         return None
 
+    def reload_csv(self, csv_path: str) -> Dict[str, Any]:
+        """
+        Reload CSV file by clearing cache and forcing reload
+        
+        Args:
+            csv_path (str): Path to CSV file to reload
+            
+        Returns:
+            Dict[str, Any]: Result with success status and info
+        """
+        try:
+            # Clear the cache for this specific file
+            if csv_path in self.csv_handler.cache:
+                del self.csv_handler.cache[csv_path]
+                logger.logger.info(f"Cleared cache for CSV: {csv_path}")
+            
+            # Reset last_csv_path to force reload
+            if self.last_csv_path == csv_path:
+                self.last_csv_path = None
+            
+            # Force reload the CSV
+            df = self.csv_handler.load_csv(csv_path)
+            if df is not None:
+                logger.logger.info(f"Successfully reloaded CSV: {csv_path} with {len(df)} rows")
+                return {
+                    "success": True,
+                    "rows": len(df),
+                    "message": f"CSV reloaded successfully with {len(df)} rows"
+                }
+            else:
+                logger.logger.error(f"Failed to reload CSV: {csv_path}")
+                return {
+                    "success": False,
+                    "error": "Failed to load CSV file"
+                }
+                
+        except Exception as e:
+            logger.log_error(e, "CSV Reload", {"csv_path": csv_path})
+            return {
+                "success": False,
+                "error": str(e)
+            }
+
     def generate_prompt(
         self,
         positive_prompt: str,

@@ -208,7 +208,7 @@
       ],
       "size": [
         400,
-        474
+        503
       ],
       "flags": {},
       "order": 0,
@@ -252,6 +252,7 @@
         "low quality, worst quality",
         "average score, bad score, low score",
         false,
+        2024,
         2024
       ]
     },
@@ -340,7 +341,7 @@
       ],
       "size": [
         400,
-        540
+        564
       ],
       "flags": {},
       "order": 2,
@@ -386,6 +387,7 @@
         -1,
         "",
         true,
+        -1,
         -1
       ]
     },
@@ -483,16 +485,16 @@
     "ds": {
       "scale": 0.8264462809917354,
       "offset": [
-        76.06999999999984,
-        30.500000000000014
+        110,
+        -115.26971435546875
       ]
     },
+    "frontendVersion": "1.23.4",
     "node_versions": {
       "ComfyUI-Jjk-Nodes": "b3c99bb78a99551776b5eab1a820e1cd58f84f31",
       "ComfyUI-Animagine-prompt": "4f0855ce259ac48ae59468d4ce5a8b726a8b2923"
     },
-    "ue_links": [],
-    "frontendVersion": "1.23.4"
+    "ue_links": []
   },
   "version": 0.4
 }
