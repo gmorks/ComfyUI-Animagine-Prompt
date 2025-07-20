@@ -7,13 +7,17 @@ import os
 from datetime import datetime
 from typing import Optional, Dict, Any
 
+# Get the directory where this module is located
+NODE_DIR = os.path.dirname(os.path.realpath(__file__))
+
 class AnimagineLogger:
     """
     Custom logger for the Animagine Prompt Node with enhanced debugging capabilities
     """
     
     def __init__(self, log_dir: str = "logs"):
-        self.log_dir = log_dir
+        # Use absolute path relative to the node directory
+        self.log_dir = os.path.join(NODE_DIR, log_dir)
         self.logger = None
         self.setup_logger()
         

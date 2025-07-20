@@ -18,7 +18,7 @@ logger = logging.getLogger('AnimaginePrompt')
 NODE_DIR = os.path.dirname(os.path.realpath(__file__))
 SAMPLE_DATA_DIR = os.path.join(NODE_DIR, "sample_data")
 
-# Ensure the sample_data directory exists
+# Ensure the sample_data directory exists within the node directory
 if not os.path.exists(SAMPLE_DATA_DIR):
     os.makedirs(SAMPLE_DATA_DIR)
 
@@ -45,4 +45,4 @@ WEB_DIRECTORY = "./web"
 define_routes()
 logger.info("[Animagine Prompt] API routes initialized")
 
-__version__ = "1.6.0"
+__version__ = "1.6.1"

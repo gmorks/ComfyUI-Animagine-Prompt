@@ -1,8 +1,8 @@
 {
   "id": "9fbd8184-60f6-4220-99d4-158e36d43551",
   "revision": 0,
-  "last_node_id": 19,
-  "last_link_id": 15,
+  "last_node_id": 21,
+  "last_link_id": 19,
   "nodes": [
     {
       "id": 2,
@@ -37,7 +37,7 @@
       "widgets_values": [
         "A {red|blue|green} dog",
         true,
-        4292686539,
+        3143738042,
         "randomize"
       ]
     },
@@ -74,10 +74,10 @@
         "cnr_id": "comfyui-display-value",
         "ver": "1.0.3",
         "Node name for S&R": "DisplayValue",
-        "preview": "A blue dog"
+        "preview": "A green dog"
       },
       "widgets_values": [
-        "A blue dog"
+        "A green dog"
       ]
     },
     {
@@ -113,10 +113,88 @@
         "cnr_id": "comfyui-display-value",
         "ver": "1.0.3",
         "Node name for S&R": "DisplayValue",
-        "preview": "gentle"
+        "preview": "playful"
       },
       "widgets_values": [
-        "gentle"
+        "playful"
+      ]
+    },
+    {
+      "id": 19,
+      "type": "DisplayValue",
+      "pos": [
+        1979.81884765625,
+        488.3630676269531
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "value",
+          "type": "*",
+          "link": 19
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "shape": 6,
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-display-value",
+        "ver": "1.0.3",
+        "Node name for S&R": "DisplayValue",
+        "preview": "energetic standing wearing vintage clothing in a office building"
+      },
+      "widgets_values": [
+        "energetic standing wearing vintage clothing in a office building"
+      ]
+    },
+    {
+      "id": 18,
+      "type": "DisplayValue",
+      "pos": [
+        1979.81884765625,
+        262
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "value",
+          "type": "*",
+          "link": 18
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "shape": 6,
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-display-value",
+        "ver": "1.0.3",
+        "Node name for S&R": "DisplayValue",
+        "preview": "energetic standing wearing vintage clothing in a office building"
+      },
+      "widgets_values": [
+        "energetic standing wearing vintage clothing in a office building"
       ]
     },
     {
@@ -150,22 +228,22 @@
         "Node name for S&R": "TextFileLoader"
       },
       "widgets_values": [
-        "wildcards\\expressions.txt",
+        "custom_nodes\\ComfyUI-Animagine-Prompt\\example_files\\expressions.txt",
         -1,
-        947005830,
+        353433227,
         "randomize"
       ]
     },
     {
-      "id": 11,
+      "id": 21,
       "type": "MultiWildcardLoader",
       "pos": [
-        1517.909423828125,
-        262
+        1513.4754638671875,
+        260.9877624511719
       ],
       "size": [
         400,
-        540
+        564
       ],
       "flags": {},
       "order": 2,
@@ -176,120 +254,43 @@
           "name": "combined_text",
           "type": "STRING",
           "links": [
-            14
+            18
           ]
         },
         {
           "name": "preview_text",
           "type": "STRING",
           "links": [
-            15
+            19
           ]
         }
       ],
       "properties": {
         "cnr_id": "animagine-prompt",
-        "ver": "8734c5115cbde087660d835dfe3a6c63ebcb7d49",
+        "ver": "06cfdf420f461a597dd52c9b7c4163741bccb93b",
         "Node name for S&R": "MultiWildcardLoader"
       },
       "widgets_values": [
         "template",
-        "{expressions.txt} {poses.txt} wearing {clothing.txt} in a {scenarios.txt}",
+        "{custom_nodes\\ComfyUI-Animagine-Prompt\\example_files\\expressions.txt} {custom_nodes\\ComfyUI-Animagine-Prompt\\example_files\\poses.txt} wearing {custom_nodes\\ComfyUI-Animagine-Prompt\\example_files\\clothing.txt} in a {custom_nodes\\ComfyUI-Animagine-Prompt\\example_files\\scenarios.txt}",
         ", ",
-        -1,
-        "",
+        3116681983,
+        "randomize",
+        "custom_nodes\\ComfyUI-Animagine-Prompt\\example_files\\expressions.txt",
         true,
         -1,
-        "",
+        "custom_nodes\\ComfyUI-Animagine-Prompt\\example_files\\poses.txt",
         true,
         -1,
-        "",
+        "custom_nodes\\ComfyUI-Animagine-Prompt\\example_files\\clothing.txt",
         true,
         -1,
-        "",
+        "custom_nodes\\ComfyUI-Animagine-Prompt\\example_files\\scenarios.txt",
         true,
         -1,
         "",
         true,
         -1
-      ]
-    },
-    {
-      "id": 19,
-      "type": "DisplayValue",
-      "pos": [
-        1979.81884765625,
-        488.3630676269531
-      ],
-      "size": [
-        210,
-        88
-      ],
-      "flags": {},
-      "order": 6,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "value",
-          "type": "*",
-          "link": 15
-        }
-      ],
-      "outputs": [
-        {
-          "name": "STRING",
-          "shape": 6,
-          "type": "STRING",
-          "links": null
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfyui-display-value",
-        "ver": "1.0.3",
-        "Node name for S&R": "DisplayValue",
-        "preview": "confident stretching wearing winter coat in a busy cafe"
-      },
-      "widgets_values": [
-        "confident stretching wearing winter coat in a busy cafe"
-      ]
-    },
-    {
-      "id": 18,
-      "type": "DisplayValue",
-      "pos": [
-        1979.81884765625,
-        262
-      ],
-      "size": [
-        210,
-        88
-      ],
-      "flags": {},
-      "order": 5,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "value",
-          "type": "*",
-          "link": 14
-        }
-      ],
-      "outputs": [
-        {
-          "name": "STRING",
-          "shape": 6,
-          "type": "STRING",
-          "links": null
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfyui-display-value",
-        "ver": "1.0.3",
-        "Node name for S&R": "DisplayValue",
-        "preview": "confident stretching wearing winter coat in a busy cafe"
-      },
-      "widgets_values": [
-        "confident stretching wearing winter coat in a busy cafe"
       ]
     }
   ],
@@ -311,16 +312,16 @@
       "*"
     ],
     [
-      14,
-      11,
+      18,
+      21,
       0,
       18,
       0,
       "*"
     ],
     [
-      15,
-      11,
+      19,
+      21,
       1,
       19,
       0,
@@ -334,15 +335,15 @@
       "scale": 1.1000000000000005,
       "offset": [
         -683.4754456662796,
-        -115.53322860460348
+        -116.44231951369439
       ]
     },
+    "frontendVersion": "1.23.4",
     "node_versions": {
       "ComfyUI-Jjk-Nodes": "b3c99bb78a99551776b5eab1a820e1cd58f84f31",
       "ComfyUI-Animagine-prompt": "4f0855ce259ac48ae59468d4ce5a8b726a8b2923"
     },
-    "ue_links": [],
-    "frontendVersion": "1.23.4"
+    "ue_links": []
   },
   "version": 0.4
 }

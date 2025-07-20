@@ -8,15 +8,19 @@ from typing import Dict, Any, Optional
 from datetime import datetime
 from .logger import logger
 
+# Get the directory where this module is located
+NODE_DIR = os.path.dirname(os.path.realpath(__file__))
+
 class StateManager:
     """
     Manages the persistence and restoration of node states
     """
     
     def __init__(self, config_dir: str = "config"):
-        self.config_dir = config_dir
-        self.state_file = os.path.join(config_dir, "animagine_state.json")
-        self.history_file = os.path.join(config_dir, "csv_history.json")
+        # Use absolute path relative to the node directory
+        self.config_dir = os.path.join(NODE_DIR, config_dir)
+        self.state_file = os.path.join(self.config_dir, "animagine_state.json")
+        self.history_file = os.path.join(self.config_dir, "csv_history.json")
         self.current_state: Dict[str, Any] = {}
         self.csv_history: Dict[str, Dict[str, Any]] = {}
         self._initialize()

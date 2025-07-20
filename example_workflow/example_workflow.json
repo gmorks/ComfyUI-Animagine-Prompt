@@ -1,48 +1,9 @@
 {
   "id": "82357ebe-40e9-4beb-b9f5-097ab9863b04",
   "revision": 0,
-  "last_node_id": 22,
-  "last_link_id": 16,
+  "last_node_id": 24,
+  "last_link_id": 20,
   "nodes": [
-    {
-      "id": 17,
-      "type": "DisplayValue",
-      "pos": [
-        1837.260009765625,
-        215.26971435546875
-      ],
-      "size": [
-        210,
-        88
-      ],
-      "flags": {},
-      "order": 7,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "value",
-          "type": "*",
-          "link": 11
-        }
-      ],
-      "outputs": [
-        {
-          "name": "STRING",
-          "shape": 6,
-          "type": "STRING",
-          "links": null
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfyui-display-value",
-        "ver": "1.0.3",
-        "Node name for S&R": "DisplayValue",
-        "preview": "confident stretching wearing winter coat in a busy cafe"
-      },
-      "widgets_values": [
-        "confident stretching wearing winter coat in a busy cafe"
-      ]
-    },
     {
       "id": 18,
       "type": "DisplayValue",
@@ -55,13 +16,13 @@
         88
       ],
       "flags": {},
-      "order": 4,
+      "order": 5,
       "mode": 0,
       "inputs": [
         {
           "name": "value",
           "type": "*",
-          "link": 12
+          "link": 17
         }
       ],
       "outputs": [
@@ -76,10 +37,10 @@
         "cnr_id": "comfyui-display-value",
         "ver": "1.0.3",
         "Node name for S&R": "DisplayValue",
-        "preview": "1girl, carro pino, .live, safe, your awesome prompt, masterpiece, best quality, absurdres, high score, great score, good score"
+        "preview": "1girl, carro pino, .live, masterpiece, best quality, absurdres, high score, great score, good score"
       },
       "widgets_values": [
-        "1girl, carro pino, .live, safe, your awesome prompt, masterpiece, best quality, absurdres, high score, great score, good score"
+        "1girl, carro pino, .live, masterpiece, best quality, absurdres, high score, great score, good score"
       ]
     },
     {
@@ -94,13 +55,13 @@
         88
       ],
       "flags": {},
-      "order": 5,
+      "order": 6,
       "mode": 0,
       "inputs": [
         {
           "name": "value",
           "type": "*",
-          "link": 13
+          "link": 18
         }
       ],
       "outputs": [
@@ -115,10 +76,10 @@
         "cnr_id": "comfyui-display-value",
         "ver": "1.0.3",
         "Node name for S&R": "DisplayValue",
-        "preview": "low quality, worst quality, blurry, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, jpeg artifacts, signature, watermark, username, artist name, the things that hurts your awesome prompt"
+        "preview": "low quality, worst quality, blurry, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, jpeg artifacts, signature, watermark, username, artist name"
       },
       "widgets_values": [
-        "low quality, worst quality, blurry, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, jpeg artifacts, signature, watermark, username, artist name, the things that hurts your awesome prompt"
+        "low quality, worst quality, blurry, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, jpeg artifacts, signature, watermark, username, artist name"
       ]
     },
     {
@@ -133,7 +94,7 @@
         88
       ],
       "flags": {},
-      "order": 6,
+      "order": 4,
       "mode": 0,
       "inputs": [
         {
@@ -193,67 +154,10 @@
         "cnr_id": "comfyui-display-value",
         "ver": "1.0.3",
         "Node name for S&R": "DisplayValue",
-        "preview": "relaxed"
+        "preview": "cool"
       },
       "widgets_values": [
-        "relaxed"
-      ]
-    },
-    {
-      "id": 11,
-      "type": "AnimaginePrompt",
-      "pos": [
-        -10,
-        215.26971435546875
-      ],
-      "size": [
-        400,
-        503
-      ],
-      "flags": {},
-      "order": 0,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "POSITIVE_PROMPT",
-          "type": "STRING",
-          "slot_index": 0,
-          "links": [
-            12
-          ]
-        },
-        {
-          "name": "NEGATIVE_PROMPT",
-          "type": "STRING",
-          "slot_index": 1,
-          "links": [
-            13
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "animagine-prompt",
-        "ver": "8734c5115cbde087660d835dfe3a6c63ebcb7d49",
-        "Node name for S&R": "AnimaginePrompt"
-      },
-      "widgets_values": [
-        "your awesome prompt",
-        "the things that hurts your awesome prompt",
-        true,
-        "example.csv",
-        0,
-        true,
-        "safe",
-        true,
-        "masterpiece, best quality, absurdres",
-        "high score, great score, good score",
-        false,
-        "low quality, worst quality",
-        "average score, bad score, low score",
-        false,
-        2024,
-        2024
+        "cool"
       ]
     },
     {
@@ -268,7 +172,7 @@
         200
       ],
       "flags": {},
-      "order": 1,
+      "order": 0,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -289,7 +193,7 @@
       "widgets_values": [
         "A {red|blue|green} dog",
         true,
-        196340664,
+        321698759,
         "randomize"
       ]
     },
@@ -311,7 +215,7 @@
         {
           "name": "value",
           "type": "*",
-          "link": 16
+          "link": 20
         }
       ],
       "outputs": [
@@ -326,14 +230,108 @@
         "cnr_id": "comfyui-display-value",
         "ver": "1.0.3",
         "Node name for S&R": "DisplayValue",
-        "preview": "confident stretching wearing winter coat in a busy cafe"
+        "preview": "warm jumping wearing flowing skirt in a art gallery"
       },
       "widgets_values": [
-        "confident stretching wearing winter coat in a busy cafe"
+        "warm jumping wearing flowing skirt in a art gallery"
       ]
     },
     {
-      "id": 16,
+      "id": 23,
+      "type": "AnimaginePrompt",
+      "pos": [
+        -10,
+        215.26971435546875
+      ],
+      "size": [
+        400,
+        498
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "POSITIVE_PROMPT",
+          "type": "STRING",
+          "links": [
+            17
+          ]
+        },
+        {
+          "name": "NEGATIVE_PROMPT",
+          "type": "STRING",
+          "links": [
+            18
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "animagine-prompt",
+        "ver": "06cfdf420f461a597dd52c9b7c4163741bccb93b",
+        "Node name for S&R": "AnimaginePrompt"
+      },
+      "widgets_values": [
+        "",
+        "",
+        true,
+        "custom_nodes\\ComfyUI-Animagine-Prompt\\example_files\\example.csv",
+        null,
+        0,
+        false,
+        "safe",
+        true,
+        "masterpiece, best quality, absurdres",
+        "high score, great score, good score",
+        false,
+        "low quality, worst quality",
+        "average score, bad score, low score",
+        false,
+        2024
+      ]
+    },
+    {
+      "id": 17,
+      "type": "DisplayValue",
+      "pos": [
+        1837.260009765625,
+        215.26971435546875
+      ],
+      "size": [
+        210,
+        88
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "value",
+          "type": "*",
+          "link": 19
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "shape": 6,
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-display-value",
+        "ver": "1.0.3",
+        "Node name for S&R": "DisplayValue",
+        "preview": "warm jumping wearing flowing skirt in a art gallery"
+      },
+      "widgets_values": [
+        "warm jumping wearing flowing skirt in a art gallery"
+      ]
+    },
+    {
+      "id": 24,
       "type": "MultiWildcardLoader",
       "pos": [
         1391.8079833984375,
@@ -352,42 +350,42 @@
           "name": "combined_text",
           "type": "STRING",
           "links": [
-            11
+            19
           ]
         },
         {
           "name": "preview_text",
           "type": "STRING",
           "links": [
-            16
+            20
           ]
         }
       ],
       "properties": {
         "cnr_id": "animagine-prompt",
-        "ver": "8734c5115cbde087660d835dfe3a6c63ebcb7d49",
+        "ver": "06cfdf420f461a597dd52c9b7c4163741bccb93b",
         "Node name for S&R": "MultiWildcardLoader"
       },
       "widgets_values": [
         "template",
-        "{expressions.txt} {poses.txt} wearing {clothing.txt} in a {scenarios.txt}",
+        "{custom_nodes\\ComfyUI-Animagine-Prompt\\example_files\\expressions.txt} {custom_nodes\\ComfyUI-Animagine-Prompt\\example_files\\poses.txt} wearing {custom_nodes\\ComfyUI-Animagine-Prompt\\example_files\\clothing.txt} in a {custom_nodes\\ComfyUI-Animagine-Prompt\\example_files\\scenarios.txt}",
         ", ",
+        365623469,
+        "randomize",
+        "custom_nodes\\ComfyUI-Animagine-Prompt\\example_files\\expressions.txt",
+        true,
         -1,
-        "",
+        "custom_nodes\\ComfyUI-Animagine-Prompt\\example_files\\poses.txt",
+        true,
+        -1,
+        "custom_nodes\\ComfyUI-Animagine-Prompt\\example_files\\clothing.txt",
+        true,
+        -1,
+        "custom_nodes\\ComfyUI-Animagine-Prompt\\example_files\\scenarios.txt",
         true,
         -1,
         "",
         true,
-        -1,
-        "",
-        true,
-        -1,
-        "",
-        true,
-        -1,
-        "",
-        true,
-        -1,
         -1
       ]
     },
@@ -422,38 +420,14 @@
         "Node name for S&R": "TextFileLoader"
       },
       "widgets_values": [
-        "wildcards\\expressions.txt",
+        "custom_nodes\\ComfyUI-Animagine-Prompt\\example_files\\expressions.txt",
         -1,
-        4006281810,
+        3980484292,
         "randomize"
       ]
     }
   ],
   "links": [
-    [
-      11,
-      16,
-      0,
-      17,
-      0,
-      "*"
-    ],
-    [
-      12,
-      11,
-      0,
-      18,
-      0,
-      "*"
-    ],
-    [
-      13,
-      11,
-      1,
-      19,
-      0,
-      "*"
-    ],
     [
       14,
       2,
@@ -471,8 +445,32 @@
       "*"
     ],
     [
-      16,
-      16,
+      17,
+      23,
+      0,
+      18,
+      0,
+      "*"
+    ],
+    [
+      18,
+      23,
+      1,
+      19,
+      0,
+      "*"
+    ],
+    [
+      19,
+      24,
+      0,
+      17,
+      0,
+      "*"
+    ],
+    [
+      20,
+      24,
       1,
       22,
       0,
@@ -485,8 +483,8 @@
     "ds": {
       "scale": 0.8264462809917354,
       "offset": [
-        110,
-        -115.26971435546875
+        49.09028925619825,
+        33.110988123870136
       ]
     },
     "frontendVersion": "1.23.4",
